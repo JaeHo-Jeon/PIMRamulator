@@ -33,6 +33,8 @@ target_sources(
   plugin/i_controller_plugin.h
   plugin/controller_validation_hook.h
   plugin/impl/command_counter.cpp
+  plugin/impl/command_counts.h
+  plugin/impl/command_counts.cpp
   plugin/impl/cmd_trace_recorder.cpp
   plugin/impl/issued_command_validation_hook.cpp
   plugin/impl/rfm_manager.cpp

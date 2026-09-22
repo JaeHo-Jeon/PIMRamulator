@@ -1,5 +1,7 @@
 #include "ramulator/controller/plugin/impl/command_counts.h"
 
+#include <algorithm>
+
 #include "ramulator/controller/controller_base.h"
 #include "ramulator/dram/dram_spec.h"
 
@@ -12,6 +14,11 @@ static std::vector<CommandCounts*>& instance_list() {
 
 const std::vector<CommandCounts*>& CommandCounts::instances() {
   return instance_list();
+}
+
+CommandCounts::~CommandCounts() {
+  auto& list = instance_list();
+  list.erase(std::remove(list.begin(), list.end(), this), list.end());
 }
 
 void CommandCounts::init() {

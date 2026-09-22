@@ -29,11 +29,12 @@ class CommandCounts final : public IControllerPlugin, public Implementation {
   uint64_t s_num_closing_all = 0;   // PREab, PREA, PREsb
   uint64_t s_num_refreshing = 0;    // REFab, REFpb, REFsb
 
-  /// Every instance built so far, in construction order. A frontend that owns
-  /// one memory system notes the size before Factory::create_memory_system and
+  /// Every live instance, in construction order. A frontend that owns one
+  /// memory system notes the size before Factory::create_memory_system and
   /// reads the instances added after it.
   static const std::vector<CommandCounts*>& instances();
 
+  ~CommandCounts() override;
   void init() override;
   void setup(IFrontEnd* frontend, IMemorySystem* memory_system) override;
   void on_issue(const Request& req) override;
